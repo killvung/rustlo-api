@@ -21,7 +21,7 @@ RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian10
 
-COPY --from=build /rustlo-world-api/target/release/rustlo-api .
+COPY --from=build /rustlo-api/target/release/rustlo-api .
 
 EXPOSE 8088
 
