@@ -45,7 +45,6 @@ async fn main() -> std::io::Result<()> {
     let counter = web::Data::new(AppStateWithCounter {
         counter: Mutex::new(0),
     });
-
     HttpServer::new(move || {
         App::new()
             .data(AppState {
