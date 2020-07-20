@@ -1,5 +1,5 @@
 # rustlo-world-api
-A simple microservice backend written with in Rust with Actix web server framework for functionality / experiment / ...
+A simple microservice written in Rust with Actix web server framework for testing purposes
 
 # How To Run
 Prerequisites:
@@ -11,4 +11,4 @@ Steps:
 - At root, run `cargo run` to build and run the application with `8088` port
 
 # Motivation
-Face it. Rust has risen, there are a lot of open opportunities to play with this awesome programming langauge. ~Also I hate C++ in general...~
+Rust has risen, a lot of opportunities there to worship this awesome langauge now. ~Also I hate C++ in general...~
