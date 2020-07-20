@@ -1,15 +1,28 @@
-FROM rust:1.43.1-slim as build
+FROM rust:1.45-slim as build
 ENV PKG_CONFIG_ALLOW_CROSS=1
 
-WORKDIR /usr/src/rustlo-world-api
-COPY . .
+RUN USER=root cargo new --bin rustlo-world-api
+WORKDIR /rustlo-world-api
 
-RUN cargo install --path .
+# copy over your manifests
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./Cargo.toml ./Cargo.toml
 
-FROM gcr.io/distroless/cc-debian10
+# this build step will cache your dependencies
+RUN cargo build --release
+RUN rm src/*.rs
 
-COPY --from=build /usr/local/cargo/bin/rustlo-world-api /usr/local/bin/rustlo-world-api
+# copy your source tree
+COPY ./src ./src
+
+# build for release
+RUN rm ./target/release/deps/rustlo_world_api*
+RUN cargo build --release
+
+FROM /distroless/cc-debian10
+
+COPY --from=build /rustlo-world-api/target/release/rustlo-world-api .
 
 EXPOSE 8088
 
-CMD ["rustlo-world-api"]
+CMD ["./rustlo-world-api"]
