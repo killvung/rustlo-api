@@ -48,7 +48,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .data(AppState {
-                app_name: String::from("rustlo-world-api"),
+                app_name: String::from("rustlo-api"),
             })
             .app_data(counter.clone()) // <- register the created data
             .service(
