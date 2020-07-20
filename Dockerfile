@@ -4,16 +4,10 @@ ENV PKG_CONFIG_ALLOW_CROSS=1
 RUN USER=root cargo new --bin rustlo-api
 WORKDIR /rustlo-api
 
-# copy over your manifests
-COPY ./Cargo.lock ./Cargo.lock
-COPY ./Cargo.toml ./Cargo.toml
+COPY . .
 
 # this build step will cache your dependencies
 RUN cargo build --release
-RUN rm src/*.rs
-
-# copy your source tree
-COPY ./src ./src
 
 # build for release
 RUN rm ./target/release/deps/rustlo_api*
