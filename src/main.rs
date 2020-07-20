@@ -22,22 +22,22 @@ struct AppState {
 #[get("/state")]
 async fn index4(data: web::Data<AppState>) -> impl Responder {
     let app_name = &data.app_name; // <- get app_name
-    format!("Hello {}!", app_name) // <- response with app_name
+    format!("Rustlo {}!", app_name) // <- response with app_name
 }
 
 #[get("/hello")]
 async fn index3() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
+    HttpResponse::Ok().body("Rust there!")
 }
 
 #[get("/")]
 async fn index() -> impl Responder {
-    HttpResponse::Ok().body("Hello world!")
+    HttpResponse::Ok().body("Rustlo world!")
 }
 
 #[get("/again")]
 async fn index2() -> impl Responder {
-    HttpResponse::Ok().body("Hello world again!")
+    HttpResponse::Ok().body("Rustlo world again!")
 }
 
 #[actix_rt::main]
@@ -49,7 +49,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .data(AppState {
-                app_name: String::from("hello-world-api"),
+                app_name: String::from("rustlo-world-api"),
             })
             .app_data(counter.clone()) // <- register the created data
             .service(
@@ -61,7 +61,7 @@ async fn main() -> std::io::Result<()> {
                     .service(_index),
             )
     })
-    .bind("127.0.0.1:8088")?
+    .bind("0.0.0.0:8088")?
     .run()
     .await
 }
