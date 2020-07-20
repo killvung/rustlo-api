@@ -1,5 +1,5 @@
-# rustlo-world-api
-A simple microservice written in Rust with Actix web server framework for testing purposes
+# rustlo-api
+A simple microservice written in Rust with Actix web server framework for any purposes
 
 # How To Run
 Prerequisites:
