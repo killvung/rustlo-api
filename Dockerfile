@@ -4,7 +4,7 @@ ENV PKG_CONFIG_ALLOW_CROSS=1
 WORKDIR /usr/src/rustlo-world-api
 COPY . .
 
-RUN cargo build --release
+RUN cargo install --path .
 
 FROM gcr.io/distroless/cc-debian10
 
