@@ -19,7 +19,7 @@ COPY ./src ./src
 RUN rm ./target/release/deps/rustlo_world_api*
 RUN cargo build --release
 
-FROM /distroless/cc-debian10
+FROM gcr.io/distroless/cc-debian10
 
 COPY --from=build /rustlo-world-api/target/release/rustlo-world-api .
 
